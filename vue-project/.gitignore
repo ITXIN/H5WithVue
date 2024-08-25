@@ -1,0 +1,12 @@
+.idea/ 
+node_modules/
+dist
+native-dist
+native-zip
+/config/modules.dev.js
+.git
+.husky
+.sass-cache
+**/.DS_Store
+**/.vscode
+.history

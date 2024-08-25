@@ -1,0 +1,14 @@
+/build/
+/config/
+/dist/
+/*.js
+/node_modules/
+package.json
+/**/*.md
+/static/sass/
+/static/css/
+/static/images/
+/src/assets/lib/
+.husky
+/**/*__mockData__*
+/.sass-cache/
