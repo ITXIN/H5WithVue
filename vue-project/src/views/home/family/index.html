@@ -1,11 +1,5 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div id="app">全家</div>
-    </body>
-</html>
+{% extends 'index.html' %} {% block titlename %}home的title{% endblock %} {% import './macro-scripts.html' as scripts %}
+{% block tail_scripts %}
+<!--TOD: 使用了模版，如果在模版index.html 中 引入了jsbridge.js 路径会找不到 ,后面看看如何放到模版中-->
+<script type="text/javascript" src="../../../utils/jsbridge/index.js"></script>
+{{scripts.single(configBase.libs.others)}} {% endblock %}

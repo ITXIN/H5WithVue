@@ -57,12 +57,14 @@ module.exports = function (options) {
     console.info(chalk.green.bold('PUBLIC_PATH_PREFIX pathName'), chalk.yellow(pathName));
     console.info(chalk.green.bold('PUBLIC_PATH_PREFIX path_prefix'), chalk.yellow(options.path_prefix));
     console.info(chalk.green.bold('PUBLIC_PATH_PREFIX'), chalk.yellow(PUBLIC_PATH_PREFIX));
+    console.info(chalk.green.bold('path src/templates'), chalk.yellow(resolveApp('src/templates')));
+
     return {
         entry: options.modules.entry,
         output: {
             path: resolveApp(`dist/${env}/${options.path_prefix}`),
-            filename: `assets/js/[name].[chunkhash].js`,
-            chunkFilename: `assets/js/[name].[chunkhash].js`,
+            filename: 'assets/js/[name].[chunkhash].js',
+            chunkFilename: 'assets/js/[name].[chunkhash].js',
             publicPath: PUBLIC_PATH_PREFIX,
         },
         module: {
@@ -83,7 +85,7 @@ module.exports = function (options) {
                             },
                         },
                     ],
-                    include: [resolveApp('src')],
+                    include: resolveApp('src'),
                 },
                 {
                     // 处理html模版
@@ -103,35 +105,35 @@ module.exports = function (options) {
                             },
                         },
                     ],
-                    include: [resolveApp('src')],
+                    include: resolveApp('src'),
                 },
                 {
                     test: /\.css$/,
                     use: [cssFinalLoader, 'css-loader'],
                     include: [resolveApp('src'), resolveApp('static/css')],
                 },
-                // {
-                //     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                //     type: 'asset',
-                //     generator: {
-                //         filename: 'assets/images/[name].[contenthash:8][ext]?f=webp',
-                //         publicPath: () => {
-                //             return PUBLIC_PATH_PREFIX;
-                //         },
-                //     },
-                //     parser: {
-                //         dataUrlCondition: {
-                //             maxSize: 4 * 1024, // 对图片大小限制，超过4k则复制，否则使用base64
-                //         },
-                //     },
-                // },
-                // {
-                //     test: /\.(woff2?|eot|ttf|otf|iconfont.*svg)(\?.*)?$/,
-                //     type: 'asset/resource', //
-                //     generator: {
-                //         filename: 'assets/fonts/[name][ext]',
-                //     },
-                // },
+                {
+                    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                    type: 'asset',
+                    generator: {
+                        filename: 'assets/images/[name].[contenthash:8][ext]?f=webp',
+                        publicPath: () => {
+                            return PUBLIC_PATH_PREFIX;
+                        },
+                    },
+                    parser: {
+                        dataUrlCondition: {
+                            maxSize: 4 * 1024, // 对图片大小限制，超过4k则复制，否则使用base64
+                        },
+                    },
+                },
+                {
+                    test: /\.(woff2?|eot|ttf|otf|iconfont.*svg)(\?.*)?$/,
+                    type: 'asset/resource', //
+                    generator: {
+                        filename: 'assets/fonts/[name][ext]',
+                    },
+                },
             ],
         },
         resolve: {

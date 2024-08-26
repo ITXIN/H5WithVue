@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-    // context 是一个配置选项，用于指定构建的根目录
+    // context是一个配置选项，用于指定构建的根目录
     context: path.resolve(__dirname, './'),
     // resolve 选项允许你定义 Webpack 在查找模块时应该遵循的规则。这包括指定模块的扩展名、目录别名以及模块解析的顺序等
     resolve: {

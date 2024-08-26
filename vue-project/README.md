@@ -18,3 +18,16 @@ views 项目创建文件夹如home,如果里面有多个页面，则文件名称
   增量：
   npm run build -- --env=prd --pack=inc
 ```
+
+### 本地开发
+
+```js
+  npm run start:
+  http://localhost:3088/a/b/home_family.html
+```
+
+### sass
+
+```js
+sass --watch sass/home/home.scss:css/home/home.css --style expanded --no-source-map
+```

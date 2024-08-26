@@ -1,5 +1,3 @@
-const { command } = require('yargs');
-
 // 自定义导出的配置信息
 const hostName = {
     dev: '',
@@ -16,11 +14,14 @@ module.exports = function (options) {
         },
         // 基础文件url
         libs: {
-            common: {
-                url: 'xx',
+            vue: {
+                url: 'https://cdn.jsdelivr.net/npm/vue@2',
             },
             others: {
                 url: 'xxx',
+            },
+            console: {
+                url: 'https://cdn.jsdelivr.net/npm/vconsole@3',
             },
         },
     };

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="x5-orientation" content="portrait" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="full-screen" content="yes" />
+        <meta name="x5-fullscreen" content="true" />
+        <meta name="x5-page-mode" content="app" />
+        <!-- // 提前链接 -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <!-- // 提前进行dns-prefetch -->
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        />
+        <title>{% block titlename %}{% endblock %}</title>
+        <!-- 必须前置，且路径放在当前这个地方 -->
+        <!-- <script type="text/javascript" src="../utils/jsbridge/index.js"></script> -->
+        <!-- <script>
+            (function (win) {
+                import(/* webpackChunkName: "jsbridge" */ '@src/utils/jsbridge/index.js').then(m => m.default);
+                console.log('=======webjs');
+                // new WebJSBridge();
+            })(window);
+        </script> -->
+    </head>
+    <body style="font-size: 16px">
+        <div id="app">{% block content %}{% endblock %}</div>
+        {% include './common-scripts.html' %} {% include './macro-scripts.html' %} {% block tail_scripts %}{% endblock
+        %}
+    </body>
+
+    <script>
+        // 可以实现在线上打开某些功能，如vconsole
+        (function (win) {
+            let url = configBase?.lib?.console;
+            var data = win.localStorage.getItem('key');
+            data = '11';
+            if (data) {
+                document.write('<script src={{url}}><\/script>');
+            }
+        })(window);
+    </script>
+</html>

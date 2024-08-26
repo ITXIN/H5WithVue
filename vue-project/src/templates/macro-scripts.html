@@ -1,0 +1,5 @@
+{% macro single(urls) %} {% for url in urls %} {% if url.isNeedDefer %}
+<script src="{{url.url}}" defer></script>
+{% else %}
+<script src="{{url.url}}"></script>
+{% endif %} {% endfor %} {% endmacro %}

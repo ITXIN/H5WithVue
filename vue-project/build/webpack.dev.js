@@ -6,12 +6,12 @@ module.exports = function (options) {
     const plugins = require('./plugins')(options);
     return merge(webpackBaseConfig, {
         mode: 'development',
-        devtool: 'cheap-module-source-map',
+        devtool: 'source-map',
         devServer: {
             open: true,
             port: process.env.port || 3088,
             compress: true,
-            host: 'localhost',
+            host: '192.168.0.105',
             allowedHosts: ['xxx.com.cn'],
             proxy: [],
         },
