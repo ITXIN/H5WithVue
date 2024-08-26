@@ -1,5 +1,4 @@
 // 桥的实现
-
 let callbackId = 0;
 let callbackMap = {};
 
