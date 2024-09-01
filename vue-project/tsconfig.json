@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "paths": {
+            "vuex": ["./node_modules/vuex/types"]
+        }
+    },
+    "include": [
+        "src/**/*", // 包含src目录下的所有文件
+        "tool/**/*" // 包含tool目录下的所有文件
+    ],
+    "exclude": [
+        "node_modules", // 排除node_modules目录
+        "dist" // 排除dist目录
+    ]
+}

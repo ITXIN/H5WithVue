@@ -32,6 +32,7 @@ module.exports = function (options) {
     });
 
     plugins.push(
+        // 允许在编译时创建全局变量，常用于根据环境配置不同的变量
         new webpack.DefinePlugin({
             ENV: JSON.stringify(options.env),
             RUNTIME: JSON.stringify(options.runtime),
@@ -40,6 +41,9 @@ module.exports = function (options) {
     );
 
     // 作用域提升
+    // 该代码行将 ModuleConcatenationPlugin 插件添加到 Webpack 的插件列表中。此插件的作用包括：
+    // 优化代码：合并小型模块到单个输出文件中，减少请求数量。
+    // 提升加载性能：通过减少文件数量来加快资源加载速度。
     plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 
     return plugins;

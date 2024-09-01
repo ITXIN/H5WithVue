@@ -15,13 +15,17 @@ module.exports = function (options) {
         // 基础文件url
         libs: {
             vue: {
-                url: 'https://cdn.jsdelivr.net/npm/vue@2',
+                // url: 'https://cdn.jsdelivr.net/npm/vue@2',
+                url: 'https://test-cdn-fat.pingan.com.cn/omm/libs/v1.0.0/js/common/common.min.js',
             },
             others: {
                 url: 'xxx',
             },
             console: {
                 url: 'https://cdn.jsdelivr.net/npm/vconsole@3',
+            },
+            bridge: {
+                url: '../src/utils/jsbridge/index.js',
             },
         },
     };

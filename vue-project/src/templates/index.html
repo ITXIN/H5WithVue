@@ -21,12 +21,22 @@
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
         />
         <title>{% block titlename %}{% endblock %}</title>
+        <!-- <script>
+            import * as jsBridge from '@/src/utils/jsbridge/index.js';
+        </script> -->
         <!-- 必须前置，且路径放在当前这个地方 -->
-        <!-- <script type="text/javascript" src="../utils/jsbridge/index.js"></script> -->
+        <!-- {% block head %}
+        <script>
+            const module = import('../../utils/jsbridge/index.js');
+            console.log('🚀 ~ module:', module);
+        </script>
+        {% endblock %} -->
+
         <!-- <script>
             (function (win) {
-                import(/* webpackChunkName: "jsbridge" */ '@src/utils/jsbridge/index.js').then(m => m.default);
-                console.log('=======webjs');
+                const jsBridge = import(/* webpackChunkName: "jsbridge" */ '../../utils/jsbridge/index.js');
+                jsBridge.then(m => {});
+                console.log('=======webjs', jsBridge);
                 // new WebJSBridge();
             })(window);
         </script> -->
@@ -39,13 +49,13 @@
 
     <script>
         // 可以实现在线上打开某些功能，如vconsole
-        (function (win) {
-            let url = configBase?.lib?.console;
-            var data = win.localStorage.getItem('key');
-            data = '11';
-            if (data) {
-                document.write('<script src={{url}}><\/script>');
-            }
-        })(window);
+        // (function (win) {
+        //     let url = configBase?.lib?.console;
+        //     var data = win.localStorage.getItem('key');
+        //     data = '11';
+        //     if (data) {
+        //         document.write('<script src={{url}}><\/script>');
+        //     }
+        // })(window);
     </script>
 </html>

@@ -31,6 +31,8 @@ class WebJSBridge {
 }
 console.log('window.WebJSBridge');
 window.WebJSBridge = WebJSBridge;
+console.log('🚀 ~ window.WebJSBridge:', window.WebJSBridge);
+
 // 注入全局方法，用于Native向h5回调
 window.bridgeCallback = function (callbackId, res) {
     const cb = callbackMap[callbackId];
@@ -40,3 +42,4 @@ window.bridgeCallback = function (callbackId, res) {
     }
     delete callbackMap.callbackId;
 };
+// export default WebJSBridge;

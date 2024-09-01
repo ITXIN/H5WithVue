@@ -2,9 +2,13 @@ const baseConfig = require('./webpack.common');
 const chalk = require('chalk');
 const { merge } = require('webpack-merge');
 const resolveApp = require('./paths');
+// 插件:在每次构建之前自动清理输出目录（通常是dist文件夹），确保输出目录只包含最新的构建结果。
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// 插件:压缩CSS文件，减少文件体积，提高加载速度。
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+// 插件:压缩JavaScript代码，减少文件体积，提高加载速度。
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+// 插件:将CSS提取到单独的文件中，而不是打包到JavaScript文件中。有助于提高页面加载性能，因为可以并行加载css和js文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (options) {
@@ -25,9 +29,13 @@ module.exports = function (options) {
         mode: 'production',
         // devtool: 'source-map', // 生产环境nosources-source-map
         plugins,
+        // 优化
         optimization: {
+            // 模块合并
             concatenateModules: false,
+            // 错误
             emitOnErrors: true,
+            //
             splitChunks: {
                 cacheGroups: {
                     vendors: {

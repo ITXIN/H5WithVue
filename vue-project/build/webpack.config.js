@@ -5,7 +5,7 @@ const prdConfig = require('./webpack.prod');
 
 // 是一个用于测量 Webpack 构建性能的插件
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-// 是一个用于测量 Webpack 构建文件大小的插件
+// 是一个用于测量 Webpack 构建文件大小的插件,生成webpack 打包后的模块分析报告，帮助您了解包的大小和组成
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 module.exports = function (options) {
@@ -32,6 +32,7 @@ module.exports = function (options) {
     if (params.ana) {
         config.plugins.push(new BundleAnalyzerPlugin());
     }
+    // 测量打包性能,实例化该插件后，可以通过它来收集构建过程中的时间和其他性能数据
     if (params.smp === 'true') {
         const smp = new SpeedMeasurePlugin();
         return smp.wrap(config);

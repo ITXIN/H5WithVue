@@ -144,6 +144,7 @@ module.exports = function (options) {
                 '@static': resolveApp('static'),
             },
         },
+        // 是一个配置选项，用于指定哪些模块应该从外部获取而不是被打包到输出的 bundle 中。
         externals: {
             'vue-router': 'VueRouter',
             vue: 'Vue',

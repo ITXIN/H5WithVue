@@ -11,7 +11,7 @@ module.exports = function (options) {
             open: true,
             port: process.env.port || 3088,
             compress: true,
-            host: '192.168.0.105',
+            host: 'localhost',
             allowedHosts: ['xxx.com.cn'],
             proxy: [],
         },

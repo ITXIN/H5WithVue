@@ -13,6 +13,7 @@ import {
 // import { Details2 } from "./components/Details2/index";
 
 // import { Home } from "./components/Home/index";
+
 //使用懒加载
 const HomeLazy = lazy(() => import("./components/Home/index"));
 const Details1Lazy = lazy(() => import("./components/Details2/index"));

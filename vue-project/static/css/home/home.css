@@ -1,8 +1,15 @@
 .body-bg {
-  background: yellow;
-  height: 100px;
+  background: red;
+  height: 500px;
 }
 
 .body-content {
   background: red;
+}
+
+.column {
+  width: 33.333%;
+  height: 100%;
+  float: left;
+  background-color: red;
 }
