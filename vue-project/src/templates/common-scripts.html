@@ -2,3 +2,24 @@
 <script src="{{configBase.libs.console.url}}"></script>
 {% endif %}
 <script src="{{configBase.libs.vue.url}}"></script>
+<script>
+    // 监听全局错误
+    window.onerror = function (message, source, lineno, colno, error) {
+        console.log('🚀 ~ message, source, lineno, colno, error:', message, source, lineno, colno, error);
+
+        if (error && error.status === 404) {
+            // 处理 404 错误，导航到 404 页面
+            router.push('/notFound');
+        }
+    };
+
+    window.addEventListener(
+        'error',
+        args => {
+            console.log('🚀 ~ args:', args);
+            console.log(args);
+            return true;
+        },
+        true,
+    );
+</script>

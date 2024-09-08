@@ -3,5 +3,9 @@
         <h1>Bar</h1>
     </div>
 </template>
-<script></script>
+<script>
+export default {
+    name: 'Bar',
+};
+</script>
 <style></style>

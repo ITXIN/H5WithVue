@@ -24,6 +24,7 @@ views 项目创建文件夹如home,如果里面有多个页面，则文件名称
 ```js
   npm run start:
   http://localhost:3088/a/b/home_family.html
+  http://localhost:3088/a/b/home_family.html#/home
 ```
 
 ### sass

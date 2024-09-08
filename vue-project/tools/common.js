@@ -191,7 +191,83 @@
 // const q = tagFn`fdlsfl hello： ${a},发多少：${b}`;
 // console.log('🚀 ~ q:', q);
 
-const p = { name: 'ok' };
-const re = {};
-Reflect.set(p, 'age', '10', re);
-console.log('🚀 ~ p:', p, re);
+// const p = { name: 'ok' };
+// const re = {};
+// Reflect.set(p, 'age', '10', re);
+// console.log('🚀 ~ p:', p, re);
+// function makeArrayReactive(arr) {
+//     const observers = [];
+
+//     // 拦截 push 方法
+//     const originalPush = arr.push;
+//     Object.defineProperty(arr, 'push', {
+//         value: function (...items) {
+//             console.log('🚀 ~ push push:', arr);
+//             console.log('🚀 ~ push items:', items);
+//             const result = originalPush.apply(this, items);
+//             console.log('🚀 ~ push observers1:', observers);
+//             // 通知所有观察者
+//             observers.forEach(observer => observer(this));
+//             console.log('🚀 ~ push this:', this);
+//             console.log('🚀 ~ push observers2:', observers);
+//             console.log('🚀 ~ push result:', result);
+//             return result;
+//         },
+//     });
+
+//     // 添加观察者
+//     function observe(observer) {
+//         console.log('🚀 ~ observe:', observer);
+//         observers.push(observer);
+//     }
+
+//     // 返回增强后的数组和观察函数
+//     return {
+//         array: arr,
+//         observe,
+//     };
+// }
+
+// // 使用示例
+// const { array, observe } = makeArrayReactive([]);
+
+// observe(function (updatedArray) {
+//     console.log('Array updated:', updatedArray);
+// });
+
+// array.push(1, 2, 3); // 控制台输出: Array updated: [1, 2, 3]
+
+// function makeArrayReactive(arr) {
+//     const observers = [];
+
+//     const proxyArr = new Proxy(arr, {
+//         set(target, key, value, receiver) {
+//             const result = Reflect.set(target, key, value, receiver);
+//             observers.forEach(observer => observer(target));
+//             return result;
+//         },
+//     });
+//     function observe(observer) {
+//         observers.push(observer);
+//     }
+//     return {
+//         array: proxyArr,
+//         observe,
+//     };
+// }
+
+// const { array, observe } = makeArrayReactive([]);
+// observe(function (updatedArray) {
+//     console.log('Array updated:', updatedArray);
+// });
+// array.push(1, 2, 3);
+// array[0] = 4;
+// array.pop();
+// const arrCommon = require('./array');
+// console.log('🚀 ~ arrComm:', arrCommon('type test'));
+function testCommon(params) {
+    console.log('🚀 ~ testCommon ~ params:', params);
+    // arrCommon('testCommon');
+    return params;
+}
+module.exports = testCommon;

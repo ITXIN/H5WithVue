@@ -38,6 +38,7 @@ import SlotDemo from '@src/components/SlotDemo.vue';
 import { mapActions, mapState } from 'vuex';
 
 export default {
+    name: 'Home',
     data() {
         return {
             show: true,
@@ -49,19 +50,14 @@ export default {
     },
     created() {
         // console.log('==============create');
-        // const obj = {
-        //     name: 'John',
-        //     sayHello: () => {
-        //         console.log(`Hello, my name is ${this.name}`);
-        //     },
-        //     sayHelloNormal: function () {
-        //         console.log(`Hello, my name is ${this.name}`);
-        //     },
-        // };
-        // // 显式绑定 this
-        // obj.sayHello.call(this);
-        // obj.sayHello(); // 输出 "Hello, my name is John"
-        // obj.sayHelloNormal(); // 输出 "Hello, my name is John"
+        // const obj = [];
+        // Object.defineProperty(obj, 'name', {
+        //     value: 'Bob',
+        //     writable: true, // 如果需要修改name的值
+        //     enumerable: true, // 如果需要在for...in循环中枚举
+        //     configurable: true, // 如果需要删除或重新配置这个属性
+        // });
+        // console.log('🚀 ~ created ~ obj:', obj);
     },
     mounted() {
         // 动态加载

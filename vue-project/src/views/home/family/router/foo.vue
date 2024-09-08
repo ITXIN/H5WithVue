@@ -3,5 +3,9 @@
         <h1>Foo</h1>
     </div>
 </template>
-<script></script>
+<script>
+export default {
+    name: 'Foo',
+};
+</script>
 <style></style>
