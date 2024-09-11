@@ -25,7 +25,7 @@ module.exports = {
     },
     plugins: ['vue', 'prettier'],
     rules: {
-        'no-unused-vars': 'off',
+        // 'no-unused-vars': 'off',
         'prettier/prettier': 'error',
         'no-debugger': 'off',
         quotes: [2, 'single'], // 引号风格

@@ -168,69 +168,69 @@
 
 // window.onhashchange = function (event) {};
 
-function robot_navigation(grid, k) {
-    const rows = grid.length;
-    const cols = grid[0].length;
+// function robot_navigation(grid, k) {
+//     const rows = grid.length;
+//     const cols = grid[0].length;
 
-    // 初始位置 左上角，步数为0
-    const start = [0, 0, 0]; // [row, col, walls_broken]
+//     // 初始位置 左上角，步数为0
+//     const start = [0, 0, 0]; // [row, col, walls_broken]
 
-    // 目标位置
-    const target = [rows - 1, cols - 1];
+//     // 目标位置
+//     const target = [rows - 1, cols - 1];
 
-    // 4个方向，对每一个位置进行检测
-    const directions = [
-        [0, 1],
-        [0, -1],
-        [1, 0],
-        [-1, 0],
-    ];
+//     // 4个方向，对每一个位置进行检测
+//     const directions = [
+//         [0, 1],
+//         [0, -1],
+//         [1, 0],
+//         [-1, 0],
+//     ];
 
-    // 已访问状态
-    const visited = new Set();
+//     // 已访问状态
+//     const visited = new Set();
 
-    // 队列：初始队列
-    const queue = [start];
+//     // 队列：初始队列
+//     const queue = [start];
 
-    while (queue.length > 0) {
-        const [row, col, walls_broken] = queue.shift();
+//     while (queue.length > 0) {
+//         const [row, col, walls_broken] = queue.shift();
 
-        // 已经访问过或超出拆除限制
-        const key = `${row},${col},${walls_broken}`;
+//         // 已经访问过或超出拆除限制
+//         const key = `${row},${col},${walls_broken}`;
 
-        console.log('🚀 ~ robot_navigation ~ key:', key);
-        if (visited.has(key) || walls_broken > k) {
-            console.log('🚀 ~ robot_navigation ~ walls_broken > k:', walls_broken, k);
-            continue;
-        }
-        // console.log('🚀 ~ robot_navigation ~ key:', key);
-        visited.add(key);
+//         console.log('🚀 ~ robot_navigation ~ key:', key);
+//         if (visited.has(key) || walls_broken > k) {
+//             console.log('🚀 ~ robot_navigation ~ walls_broken > k:', walls_broken, k);
+//             continue;
+//         }
+//         // console.log('🚀 ~ robot_navigation ~ key:', key);
+//         visited.add(key);
 
-        // 到达目标位置
-        if (row === target[0] && col === target[1]) {
-            return true;
-        }
+//         // 到达目标位置
+//         if (row === target[0] && col === target[1]) {
+//             return true;
+//         }
 
-        // 向四个方向移动
-        for (const [dr, dc] of directions) {
-            const newRow = row + dr;
-            const newCol = col + dc;
+//         // 向四个方向移动
+//         for (const [dr, dc] of directions) {
+//             const newRow = row + dr;
+//             const newCol = col + dc;
 
-            // 越界检查
-            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) {
-                continue;
-            }
+//             // 越界检查
+//             if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) {
+//                 continue;
+//             }
 
-            // 新位置的状态
-            const newWallsBroken = walls_broken + grid[newRow][newCol];
+//             // 新位置的状态
+//             const newWallsBroken = walls_broken + grid[newRow][newCol];
 
-            // 添加新位置到队列
-            queue.push([newRow, newCol, newWallsBroken]);
-        }
-    }
+//             // 添加新位置到队列
+//             queue.push([newRow, newCol, newWallsBroken]);
+//         }
+//     }
 
-    return false;
-}
+//     return false;
+// }
 
 // 测试用例
 // const grid1 = [
@@ -247,12 +247,14 @@ function robot_navigation(grid, k) {
 // const k2 = 1;
 // console.log(robot_navigation(grid2, k2)); // 输出：true
 
-const grid3 = [
-    [0, 1, 0, 0, 0],
-    [0, 1, 0, 1, 0],
-    [0, 1, 0, 1, 0],
-    [0, 1, 0, 1, 0],
-    [0, 0, 0, 1, 0],
-];
-const k3 = 0;
-console.log(robot_navigation(grid3, k3));
+// const grid3 = [
+//     [0, 1, 0, 0, 0],
+//     [0, 1, 0, 1, 0],
+//     [0, 1, 0, 1, 0],
+//     [0, 1, 0, 1, 0],
+//     [0, 0, 0, 1, 0],
+// ];
+// const k3 = 0;
+// console.log(robot_navigation(grid3, k3));
+
+// module.exports = { name, obj };

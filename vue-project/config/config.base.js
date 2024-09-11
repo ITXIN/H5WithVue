@@ -1,3 +1,5 @@
+const { default: VueRouter } = require('vue-router');
+
 // 自定义导出的配置信息
 const hostName = {
     dev: '',
@@ -15,8 +17,13 @@ module.exports = function (options) {
         // 基础文件url
         libs: {
             vue: {
-                // url: 'https://cdn.jsdelivr.net/npm/vue@2',
-                url: 'https://test-cdn-fat.pingan.com.cn/omm/libs/v1.0.0/js/common/common.min.js',
+                url: 'https://cdn.jsdelivr.net/npm/vue@2',
+            },
+            vuex: {
+                url: 'https://cdn.jsdelivr.net/npm/vuex@3',
+            },
+            vuerouter: {
+                url: 'https://cdn.jsdelivr.net/npm/vue-router@3',
             },
             others: {
                 url: 'xxx',

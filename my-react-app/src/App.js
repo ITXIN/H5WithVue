@@ -4,7 +4,16 @@ import './App.css';
 // import { CounterComponent, CounterComponentTwo } from './components/MyComponentProviter.tsx';
 // import { StoreProvider } from './store/store.js';
 // import { useEffect, useState } from 'react';
-import { Canvas } from './components/Canvas.tsx';
+// import { Canvas } from './components/Canvas.tsx';
+import ReactDOM from 'react-dom';
+function MyPortalComponent() {
+    return ReactDOM.createPortal(
+        <div>
+            <h1>Portal Component</h1>
+        </div>,
+        document.getElementById('portal-root'),
+    );
+}
 function App() {
     function test() {
         // var a = 1;
@@ -28,6 +37,7 @@ function App() {
 
     return (
         <div className="App">
+            <h1>Root </h1>
             {/* <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
@@ -41,7 +51,9 @@ function App() {
                 <CounterComponent></CounterComponent>
                 <CounterComponentTwo></CounterComponentTwo>
             </StoreProvider> */}
-            <Canvas></Canvas>
+            {/* <Canvas></Canvas> */}
+
+            <MyPortalComponent />
         </div>
     );
 }

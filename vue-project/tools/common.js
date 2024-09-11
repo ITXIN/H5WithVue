@@ -265,9 +265,41 @@
 // array.pop();
 // const arrCommon = require('./array');
 // console.log('🚀 ~ arrComm:', arrCommon('type test'));
-function testCommon(params) {
-    console.log('🚀 ~ testCommon ~ params:', params);
-    // arrCommon('testCommon');
-    return params;
-}
-module.exports = testCommon;
+// function testCommon(params) {
+//     console.log('🚀 ~ testCommon ~ params:', params);
+//     // arrCommon('testCommon');
+//     return params;
+// }
+// module.exports = testCommon;
+// const { name } = require('./typeScriptTest');
+// import { name } from './typeScriptTest';
+// console.log('🚀 ~ name:', name);
+// const map = new Map([
+//     ['user', 'xiaoru'],
+//     ['age', 18],
+// ]);
+// map.set('name', 'dfas');
+// map.set({ name: 'test' }, 'kkk');
+// console.log('🚀 ~ map:', map);
+// const arr = [1, 2, 3, 5, 6, 2, 1];
+// const arr2 = [...new Set(arr)];
+// console.log('🚀 ~ arr2:', arr2);
+
+// function strong(target) {
+//     target.AK = true;
+// }
+
+// class soldier {}
+// import { name, obj } from './typeScriptTest';
+// console.log('🚀 ~ name:', name, obj);
+// const obj1 = { name: 'kkk' };
+// const obj2 = { age: '12' };
+// const weakSet = new WeakSet([obj1, obj2]);
+// console.log('🚀 ~ weakSet:', weakSet);
+
+// console.log('🚀 ~ weakSet:', weakSet);
+const f = () => {
+    // const re = { ...rest };
+    // console.log('🚀 ~ f ~ re:', ...rest);
+    // return re;
+};

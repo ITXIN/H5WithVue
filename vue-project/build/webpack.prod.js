@@ -27,7 +27,7 @@ module.exports = function (options) {
 
     return merge(webpackBaseConfig, {
         mode: 'production',
-        // devtool: 'source-map', // 生产环境nosources-source-map
+        devtool: 'source-map', // 生产环境nosources-source-map，source-map
         plugins,
         // 优化
         optimization: {

@@ -36,7 +36,9 @@
 <script>
 import SlotDemo from '@src/components/SlotDemo.vue';
 import { mapActions, mapState } from 'vuex';
-
+import { name, obj } from '@src/utils/test';
+obj.name = 'change';
+console.log('🚀 ~ name:', name, JSON.stringify(obj));
 export default {
     name: 'Home',
     data() {
@@ -64,6 +66,7 @@ export default {
         this.$nextTick(() => {
             this.lazyLoadUnFirstBundle();
         });
+        this.noDebugger();
     },
     computed: {
         // 引入store
@@ -75,6 +78,37 @@ export default {
     methods: {
         // 引入store
         ...mapActions(['getHomeListData']),
+        noDebugger() {
+            // 1. 屏蔽右键菜单
+            // document.oncontextmenu = function (e) {
+            //     return true;
+            // };
+            //
+            (() => {
+                function ban() {
+                    if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+                        document.body.innerHTML = '检测到非法调试，请关闭后重新刷新重试';
+                    }
+                    // 2. 无限debugger 方式阻止调试
+                    // setInterval(() => {
+                    //     console.log('debugger');
+                    //     // debugger;
+                    // }, 50);
+                    // 3. 检测是否打开了调试工具
+                    // setInterval(() => {
+                    //     if (typeof console.clear !== 'undefined') {
+                    //         console.log('🚀 ~ setInterval ~ console.clear:', console.clear);
+                    //         location.reload();
+                    //     }
+                    // }, 1000);
+                }
+                try {
+                    ban();
+                } catch (error) {
+                    console.log('🚀 ~ noDebugger ~ error:', error);
+                }
+            })();
+        },
         getHomeList() {
             // homeStore
             console.log('getHomeList');
