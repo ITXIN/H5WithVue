@@ -6,7 +6,8 @@
     "scripts": {
         "start": "cross-env NODE_ENV=development webpack serve --config build/dev-server.js ",
         "precommit": "eslint --ext .js,.vue,.ts src/ --rule 'no-debugger:error'",
-        "build": "cross-env NODE_ENV=production node build/main.js"
+        "build": "cross-env NODE_ENV=production node build/main.js",
+        "dev": "cross-env NODE_ENV=development node build/main.js"
     },
     "husky": {
         "hooks": {
@@ -28,6 +29,7 @@
         "numeral": "2.0.6",
         "vue": "2.6.11",
         "vue-class-component": "7.2.6",
+        "vue-lazyload": "^3.0.0",
         "vue-property-decorator": "9.1.2",
         "vue-router": "3.6.5",
         "vuex": "3.6.2"

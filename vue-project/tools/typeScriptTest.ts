@@ -258,3 +258,62 @@
 // console.log(robot_navigation(grid3, k3));
 
 // module.exports = { name, obj };
+
+// function climbStairs(n) {
+//     // 如果楼梯阶数小于等于1，则直接返回阶数本身
+//     if (n <= 1) return n;
+
+//     // 初始化两个变量来存储前两个状态的结果，以节省空间
+//     let prev = 1; // 爬到第1阶的方法数
+//     let curr = 2; // 爬到第2阶的方法数
+
+//     // 从第3阶开始计算，直到第n阶
+//     for (let i = 3; i <= n; i++) {
+//         // 计算当前阶数的方法数：等于前两阶方法数之和
+//         const temp = prev + curr;
+//         // 更新prev和curr的值，为下一轮迭代做准备
+//         prev = curr;
+//         curr = temp;
+//     }
+
+//     // 循环结束时，curr存储的就是爬到第n阶的方法数
+//     return curr;
+// }
+
+// // 示例
+// console.log(climbStairs(1)); // 输出: 1
+// console.log(climbStairs(2)); // 输出: 2
+// console.log(climbStairs(3)); // 输出: 3
+// console.log(climbStairs(4)); // 输出: 5
+// console.log(climbStairs(5)); // 输出: 8
+
+function climbStairs(n) {
+    // if n == 1:
+    //     return 1
+    // if n == 2:
+    //     return 2
+
+    // const dp = [0] * (n + 1);
+    // dp[1] = 1;
+    // dp[2] = 2;
+
+    // for (let i = 3; i <= n; i++) {
+    //     dp[i] = dp[i - 1] + dp[i - 2];
+    //     console.log('🚀 ~ climbStairs ~ dp:', dp[i]);
+    // }
+
+    // return dp[n];
+    let p = 0,
+        q = 0,
+        r = 1;
+    for (let index = 1; index <= n; index++) {
+        p = q;
+        q = r;
+        r = p + q;
+    }
+    return r;
+}
+// # 示例
+const n = 'sss';
+console.log('🚀 ~ n:', climbStairs(n));
+// print(climbStairs(n));

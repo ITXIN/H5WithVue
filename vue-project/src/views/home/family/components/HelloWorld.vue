@@ -15,6 +15,12 @@ export default {
     props: {
         msg: String,
     },
+    // 父组件监听子组件生命周期
+    inject: ['notifyParent'],
+    mounted() {
+        console.log('mounted');
+        this.notifyParent('HelloWorld notifyParent');
+    },
 };
 </script>
 

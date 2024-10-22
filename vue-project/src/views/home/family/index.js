@@ -7,9 +7,47 @@ import Router from 'vue-router';
 // import VueRouter from './router/custom_vue_router/index.js';
 import '@static/css/home/home.css';
 import homeStore from '@src/vuex/home';
+import VueLazyload from 'vue-lazyload';
+
+// TODO:检测页面是否白屏
+// import { openWhiteScreen } from '@src/utils/whiteScreenCheck/index.js';
+// 检测页面是否白屏
+// openWhiteScreen({ skeletonProject: true }, function (res) {
+//     console.log('🚀 ~ openWhiteScreen ~ res:', res);
+// });
+
+// 图片懒加载插件
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: '',
+    loading: '',
+    attempt: 1,
+});
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
+// 定义全局方法
+Vue.prototype.$myGlobalMethod = function name(params) {
+    console.log('🚀 ~ name ~ params:', params);
+};
+const timeNow = new Date();
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('🚀 ~ first-contenful-paint DOMContentLoaded:', new Date() - timeNow);
+});
+if ('PerformanceObserver' in window && 'getEntriesByName' in performance) {
+    const fcpEntries = performance.getEntriesByName('first-contentful-paint');
+    if (fcpEntries.length > 0) {
+        // 假设我们只关心第一个（通常只有一个）FCP事件
+        const fcp = fcpEntries[0];
+        console.log(`First Contentful Paint happened at ${fcp.startTime} milliseconds`);
+        // fcp 对象还包含其他有用的属性，如 duration 等
+    } else {
+        console.log('No First Contentful Paint event found.');
+    }
+} else {
+    console.log('Your browser does not support the Performance API.');
+}
+
 // TODO:捕获全局错误
 Vue.config.errorHandler = (err, vm, info) => {
     console.log('🚀 ~ err, vm, info:', err, vm, info);
@@ -57,7 +95,7 @@ const router = new Router({
                     },
                 },
                 // {
-                // // 错误的路径重定向到home,如果打开注释外层的路由（{path: '*'，component: notFound,}）不起作用了
+                //     // // 错误的路径重定向到home,如果打开注释外层的路由（{path: '*'，component: notFound,}）不起作用了
                 //     path: '*',
                 //     redirect: '/home',
                 // },

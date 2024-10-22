@@ -21,6 +21,11 @@ export default {
     deactivated() {
         console.log('=======About deactivated');
     },
+    beforeRouteEnter(to, from, next) {
+        console.log('🚀 About~ beforeRouteEnter ~ to, from, next:', to, from, next);
+
+        next();
+    },
 };
 </script>
 

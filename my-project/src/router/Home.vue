@@ -24,6 +24,11 @@ export default {
     deactivated() {
         console.log('=======home deactivated');
     },
+    beforeRouteEnter(to, from, next) {
+        console.log('🚀 Home~ beforeRouteEnter ~ to, from, next:', to, from, next);
+
+        next();
+    },
 };
 </script>
 

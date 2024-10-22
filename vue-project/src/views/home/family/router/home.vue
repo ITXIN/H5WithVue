@@ -3,13 +3,54 @@
         <!-- 插槽 -->
         <h1>Home页面</h1>
 
+        <VHCenter></VHCenter>
+
+        <h1>BFC</h1>
+        <BFCTest></BFCTest>
+
+        <h1>css 画三角形</h1>
+        <div class="triangle"></div>
+
+        <h1>用户输入显示区XSS DOM 攻击</h1>
+        <div id="userInput"></div>
+        <input type="text" id="textInput" placeholder="输入内容..." />
+        <button @click="displayText">显示</button>
+
+        <h1>测试实现0.5p的线条</h1>
+        <div class="half-px-line-container">
+            <div class="half-px-line"></div>
+        </div>
+        <div class="half-pixel-line"></div>
+        <svg width="100%" height="1px">
+            <line x1="0" y1="0" x2="100%" y2="0" stroke="#000" stroke-width="0.5" />
+        </svg>
+
+        <h1>测试图片懒加载</h1>
+        <div>
+            <!-- <img v-lazy="imageUrl" :key="1" /> -->
+            <img :src="imageUrl" />
+        </div>
+
+        <h1>测试修改数组元素</h1>
+        <div v-for="item in dataArr" :key="item.name">
+            {{ item.name }}
+        </div>
+        <button @click="changeArrItem">修改数组元素</button>
+
+        <h1>测试prove inject</h1>
+        <hello-world></hello-world>
+
+        <h1>测试全局方法</h1>
+        <button @click="testGlobalMethod">testGlobalMethod测试</button>
+
         <h1>插槽测试</h1>
         <SlotDemo>
             <template v-slot:header="slotData">
                 <div>header 你哈{{ slotData.data.msg }}</div>
             </template>
+            <div>Home content</div>
             <template v-slot:footer>
-                <div>footer 你领导</div>
+                <div>footer 到达你领导</div>
             </template>
         </SlotDemo>
 
@@ -31,24 +72,60 @@
         <template v-if="true">
             <component :is="comName" />
         </template>
+        <h1>测试图片懒加载</h1>
+        <div>
+            <!-- <img v-lazy="imageUrl" /> -->
+        </div>
     </div>
 </template>
 <script>
 import SlotDemo from '@src/components/SlotDemo.vue';
 import { mapActions, mapState } from 'vuex';
-import { name, obj } from '@src/utils/test';
-obj.name = 'change';
-console.log('🚀 ~ name:', name, JSON.stringify(obj));
+import HelloWorld from '../components/HelloWorld.vue';
+import BFCTest from '../components/BFCTest.vue';
+import VHCenter from '../components/VHCenter.vue';
+// import { name, obj } from '@src/utils/test';
+// obj.name = 'change';
+// console.log('🚀 ~ name:', name, JSON.stringify(obj));
 export default {
     name: 'Home',
     data() {
         return {
             show: true,
-            comName: null, // 动态加载
+            comName: null, // 动态加载,
+            dataArr: [
+                {
+                    name: 'test',
+                    age: 18,
+                },
+                {
+                    name: 'test2',
+                    age: 18,
+                },
+                {
+                    name: 'test3',
+                    age: 18,
+                },
+                {
+                    name: 'test4',
+                    age: 18,
+                },
+            ],
+            imageUrl:
+                'http://gips3.baidu.com/it/u=2814132893,2583173656&fm=3042&app=3042&f=JPEG&wm=1,huayi,0,0,13,9&wmo=0,0&w=480&h=640',
+        };
+    },
+    provide() {
+        return {
+            // 父组件监听子组件生命周期
+            notifyParent: this.handleNotifyParent,
         };
     },
     components: {
         SlotDemo,
+        HelloWorld,
+        BFCTest,
+        VHCenter,
     },
     created() {
         // console.log('==============create');
@@ -78,6 +155,20 @@ export default {
     methods: {
         // 引入store
         ...mapActions(['getHomeListData']),
+        displayText() {
+            const text = document.getElementById('textInput').value;
+            document.getElementById('userInput').innerHTML = text;
+        },
+        changeArrItem() {
+            this.dataArr[0] = { name: 'change', age: 100 };
+            console.log('🚀 ~ changeArrItem ~ dataArr:', this.dataArr);
+        },
+        handleNotifyParent(hook) {
+            console.log('🚀 ~ handleNotifyParent ~ this.$route:', hook);
+        },
+        testGlobalMethod() {
+            this.$myGlobalMethod({ key: '这是home 页面触发的全局方法' });
+        },
         noDebugger() {
             // 1. 屏蔽右键菜单
             // document.oncontextmenu = function (e) {
@@ -155,6 +246,24 @@ export default {
             console.log('=======comname', this.comName);
         },
     },
+    // 在SSR中，activated钩子实际上不会被调用
+    activated() {
+        console.log('🚀 Home~ activated ~ activated:');
+    },
+    deactivated() {
+        console.log('🚀 Home~ deactivated ~ deactivated:');
+    },
+    beforeRouteEnter(to, from, next) {
+        console.log('🚀 Home~ beforeRouteEnter ~ to, from, next:', to, from, next);
+
+        // 注意：在守卫中访问组件实例需要使用 next 的 vm 参数
+        next(vm => {
+            // 通过 vm 访问组件实例
+            console.log('即将进入的路由是：', to);
+            // 例如，从服务器获取数据
+            // vm.fetchData();
+        });
+    },
 };
 </script>
 <style scoped>
@@ -174,5 +283,34 @@ export default {
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
+}
+.half-pixel-line {
+    height: 1px;
+    background-color: yellow;
+    transform: scaleY(0.5);
+    transform-origin: top;
+}
+
+.half-px-line {
+    position: relative;
+    height: 1px;
+    background-color: black;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+}
+
+/* 容器需要适应缩放 */
+.half-px-line-container {
+    overflow: hidden;
+    height: 1px; /* 与线条原始高度相同 */
+    margin-bottom: 15px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid blue;
 }
 </style>

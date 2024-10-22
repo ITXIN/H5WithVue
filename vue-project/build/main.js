@@ -6,7 +6,7 @@ const argv = require('yargs').argv,
     resolveApp = require('./paths');
 
 function bootstrap(options = {}) {
-    const env = argv.env || 'prd',
+    const env = argv.env || 'dev' || 'prd',
         ana = argv.ana,
         smp = argv.smp,
         runtime = argv.runtime || 'online',

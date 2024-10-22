@@ -23,7 +23,7 @@ module.exports = function (options) {
                 url: 'https://cdn.jsdelivr.net/npm/vuex@3',
             },
             vuerouter: {
-                url: 'https://cdn.jsdelivr.net/npm/vue-router@3',
+                url: 'https://cdn.jsdelivr.net/npm/vue-router@3.6.5',
             },
             others: {
                 url: 'xxx',

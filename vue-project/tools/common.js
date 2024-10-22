@@ -10,6 +10,8 @@
 //     }
 // }
 
+// import modules = require("../build/modules");
+
 // test();
 // const str = 'fdlsjafldjlflafdjflsafld';
 // const names = ['Alice', 'Bob', 'Tiff', 'Alice', 'Tiff'];
@@ -298,8 +300,543 @@
 // console.log('🚀 ~ weakSet:', weakSet);
 
 // console.log('🚀 ~ weakSet:', weakSet);
-const f = () => {
-    // const re = { ...rest };
-    // console.log('🚀 ~ f ~ re:', ...rest);
-    // return re;
+// const f = () => {
+//     // const re = { ...rest };
+//     // console.log('🚀 ~ f ~ re:', ...rest);
+//     // return re;
+// };
+// const eventEmitter = require('events');
+// class MyEmitter extends eventEmitter {}
+// const myEmitter = new MyEmitter();
+// myEmitter.on('event', function (a, b) {
+//     console.log('🚀 ~ a, b:', a, b);
+// });
+// myEmitter.emit('event', 'a', 'b');
+
+// class EventEmitter {
+//     constructor() {
+//         this.events = {};
+//     }
+
+//     on(type, handler) {
+//         if (!this.events[type]) {
+//             this.events[type] = [];
+//         }
+//         this.events[type].push(handler);
+//     }
+
+//     addListener(type, handler) {
+//         this.on(type, handler);
+//     }
+
+//     prependListener(type, handler) {
+//         if (!this.events[type]) {
+//             this.events[type] = [];
+//         }
+//         this.events[type].unshift(handler);
+//     }
+
+//     removeListener(type, handler) {
+//         if (!this.events[type]) {
+//             return;
+//         }
+
+//         this.events[type] = this.events[type].filter(item => item !== handler);
+//     }
+
+//     off(type, handler) {
+//         this.removeListener(type, handler);
+//     }
+
+//     emit(type, ...args) {
+//         if (this.events[type]) {
+//             // this.events[type].forEach(callback => callback(args));
+//             this.events[type].forEach(element => {
+//                 Reflect.apply(element, this, args);
+//             });
+//         }
+//     }
+
+//     once(type, handler) {
+//         const onceHandler = function (...args) {
+//             handler(...args);
+//             this.off(type, onceHandler);
+//         };
+//         this.on(type, onceHandler);
+//     }
+// }
+// const arrayLike = {
+//     0: 'a',
+//     1: 'b',
+//     2: 'c',
+//     length: 3,
+// };
+// const arr2 = Array.from(arrayLike);
+// console.log('🚀 ~ arr2:', arr2);
+
+// function defineReactive(obj, key, val, cb) {
+//     // 确保属性是响应式的
+//     const dep = new Dep();
+
+//     // 递归地将对象转换为响应式对象
+//     observe(val);
+
+//     // 使用 Object.defineProperty 来定义响应式属性
+//     Object.defineProperty(obj, key, {
+//         enumerable: true,
+//         configurable: true,
+//         get: function reactiveGetter() {
+//             // 当属性被访问时，通知依赖
+//             Dep.target && dep.depend();
+//             return val;
+//         },
+//         set: function reactiveSetter(newVal) {
+//             // 当属性值变化时，更新值并通知依赖
+//             if (newVal === val) return;
+//             val = newVal;
+//             observe(newVal); // 确保新值也是响应式的
+//             dep.notify(); // 通知所有依赖进行更新
+//         },
+//     });
+// }
+
+// // 依赖收集类
+// class Dep {
+//     constructor() {
+//         this.subscribers = new Set();
+//     }
+
+//     depend() {
+//         if (Dep.target) {
+//             this.subscribers.add(Dep.target);
+//         }
+//     }
+
+//     notify() {
+//         this.subscribers.forEach(sub => {
+//             sub.update();
+//         });
+//     }
+// }
+
+// // 全局的 Dep.target，用于依赖收集
+// Dep.target = null;
+
+// // 观察一个对象，使其所有属性都是响应式的
+// function observe(value) {
+//     if (!isObject(value)) {
+//         return;
+//     }
+//     Object.keys(value).forEach(key => {
+//         defineReactive(value, key, value[key]);
+//     });
+// }
+
+// function isObject(value) {
+//     return value !== null && typeof value === 'object';
+// }
+
+// // 示例使用
+// const data = { name: 'Vue', age: 20 };
+// observe(data);
+
+// // 模拟 Vue 的 watcher 机制
+// function Watcher(cb) {
+//     Dep.target = this;
+//     cb();
+//     Dep.target = null;
+// }
+
+// new Watcher(function () {
+//     console.log('Watcher'); // 触发 getter，进行依赖收集
+//     // 假设这里还有其他逻辑
+// });
+
+// // 修改数据，触发 setter，进行更新
+// data.name = 'React';
+// data.obj = { name: 'React' };
+// console.log('🚀 ~ data:', data);
+
+// function observe(data) {
+//     if (!data || typeof data !== 'object') {
+//         return;
+//     }
+//     Object.keys(data).forEach(key => {
+//         const value = data[key];
+//         observeValue(data, key, value);
+//     });
+// }
+
+// function observeValue(obj, key, value) {
+//     observe(value);
+//     Object.defineProperty(obj, key, {
+//         enumerable: true,
+//         configurable: true,
+//         get() {
+//             return value;
+//         },
+//         set(newValue) {
+//             if (newValue === value) {
+//                 return;
+//             }
+//             value = newValue;
+//             console.log(`属性 ${key} 的值从 ${value} 变为 ${newValue}`);
+//             observe(newValue);
+//         },
+//     });
+// }
+
+// const data = {
+//     message: 'Hello Vue!',
+//     count: 0,
+// };
+
+// observe(data);
+
+// data.message = 'New message';
+// data.count = 10;
+// data.key = {
+//     key: 'value',
+// };
+// console.log(data);
+// data.key.key = 'new value';
+// console.log(data);
+
+// // 简化版的Vue2响应式系统核心代码
+// function defineReactive(obj, key, val) {
+//     // 对象属性的Observer
+//     const dep = new Dep();
+
+//     // 递归的convert属性
+//     convert(val);
+
+//     Object.defineProperty(obj, key, {
+//         enumerable: true,
+//         configurable: true,
+//         get: function reactiveGetter() {
+//             console.log('getter', val);
+//             // 添加依赖
+//             Dep.target && dep.addSub(Dep.target);
+//             return val;
+//         },
+//         set: function reactiveSetter(newVal) {
+//             console.log('🚀 ~ reactiveSetter ~ newVal:', newVal);
+//             if (newVal === val) return;
+//             val = newVal;
+//             // 新值可能是个对象，递归转换
+//             convert(newVal);
+//             // 触发依赖的更新
+//             dep.notify();
+//         },
+//     });
+// }
+
+// // 转换对象的属性为响应式
+// function convert(obj) {
+//     if (obj && typeof obj === 'object') {
+//         Object.keys(obj).forEach(key => {
+//             defineReactive(obj, key, obj[key]);
+//         });
+//     }
+// }
+
+// // 依赖收集类
+// class Dep {
+//     constructor() {
+//         this.subs = [];
+//     }
+
+//     addSub(sub) {
+//         this.subs.push(sub);
+//     }
+
+//     notify() {
+//         this.subs.forEach(sub => {
+//             sub();
+//         });
+//     }
+// }
+
+// // 全局Dep.target设置
+// Dep.target = null;
+
+// // 使用示例
+// const data = { name: 'Vue' };
+// convert(data);
+
+// // 观察者
+// function watcher(fn) {
+//     Dep.target = fn;
+//     fn(); // 触发依赖收集
+//     Dep.target = null;
+// }
+
+// // 观察data的变化
+// watcher(() => {
+//     console.log('data.name changed:', data.name);
+// });
+
+// // 修改数据，触发watcher
+// data.name = 'Vue 2';
+// function reactive(target) {
+//     if (!target || typeof target !== 'object') {
+//         return target;
+//     }
+
+//     const deepMap = new WeakMap();
+//     function deepReactive(obj) {
+//         if (deepMap.has(obj)) {
+//             return obj;
+//         }
+//         deepMap.set(obj, true);
+//         const handler = {
+//             get(target, key, receiver) {
+//                 const value = Reflect.get(target, key, receiver);
+//                 console.log('get:', key, value, target);
+
+//                 if (typeof value === 'object' && value !== null && !deepMap.has(value)) {
+//                     return deepReactive(value);
+//                 }
+//                 return value;
+//             },
+//             set(target, key, value, receiver) {
+//                 const result = Reflect.set(target, key, value, receiver);
+//                 console.log('set:', key, value, target);
+//                 return result;
+//             },
+//             deleteProperty(target, key) {
+//                 console.log('🚀 ~ deleteProperty ~ target, key:', target, key);
+//                 const result = Reflect.deleteProperty(target, key);
+//                 return result;
+//             },
+//         };
+
+//         return new Proxy(obj, handler);
+//     }
+//     return deepReactive(target);
+// }
+// const obj = {
+//     name: 'hello',
+//     age: 24,
+//     data: {
+//         code: 122,
+//         list: [{ key: 'ee' }],
+//     },
+// };
+// const proxyObj = reactive(obj);
+// delete proxyObj.age;
+// proxyObj.name = 'change jack';
+// proxyObj.data.code = 400;
+// console.log(proxyObj.data.code);
+// obj.name = 'change jack1';
+
+// function debounce(fn, wait = 50) {
+//     let timer = null;
+//     return function (...args) {
+//         if (timer) clearTimeout(timer);
+//         timer = setTimeout(() => {
+//             fn.apply(this, args);
+//         }, wait);
+//     };
+// }
+
+// function throttle(fn, wait) {
+//     let timer = null;
+//     let preTimer = 0;
+//     return function (...args) {
+//         const now = +new Date();
+//         if (now - preTimer < wait) {
+//             if (timer) clearTimeout(timer);
+//             timer = setTimeout(() => {
+//                 preTimer = now;
+//                 fn.apply(this, args);
+//             }, wait);
+//         } else {
+//             preTimer = now;
+//             fn.apply(this, args);
+//         }
+//     };
+// }
+// function create() {
+//     const constr = [].shift.call(arguments);
+//     const obj = Object.create(constr.prototype);
+//     const result = constr.apply(obj, arguments);
+//     return typeof result === 'object' ? result : obj;
+// }
+// function deepCopy(obj) {
+//     if (obj === null || typeof obj !== 'object') {
+//         return obj;
+//     }
+//     let copy;
+//     if (Array.isArray(obj)) {
+//         copy = [];
+//         obj.forEach(item => {
+//             copy.push(deepCopy(item));
+//         });
+//     } else if (obj instanceof Date) {
+//         copy = new Date(obj);
+//     } else if (obj instanceof RegExp) {
+//         copy = new RegExp(obj.source, obj.flags);
+//     } else {
+//         copy = {};
+//         Object.keys(obj).forEach(key => {
+//             if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//                 copy[key] = deepCopy(obj[key]);
+//             }
+//         });
+//     }
+//     return copy;
+// }
+
+// function hasCycle(obj) {
+//     const stack = [obj];
+//     const visited = new Set();
+//     while (stack.length > 0) {
+//         const current = stack.pop();
+//         if (visited.has(current)) {
+//             return true;
+//         }
+//         visited.add(current);
+//         for (const key in current) {
+//             const value = current[key];
+//             if (typeof value === 'object' && value !== null) {
+//                 stack.push(value);
+//             }
+//         }
+//     }
+//     return false;
+// }
+// let num = 1;
+// function add() {
+//     num++;
+//     console.log('add', num);
+// }
+// module.exports = {
+//     num,
+//     add,
+// };
+
+// export const obj = {
+//     num: 1,
+// };
+// // 导出单个变量
+// export const name = 'ES6 Module';
+
+// // 导出函数
+// export let num = 1;
+// export function sayHello() {
+//     num++;
+//     console.log('Hello from ES6 module!', num);
+// }
+
+// // 导出类
+// export class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+
+// let counter = 3;
+// function incCounter() {
+//     counter++;
+// }
+// module.exports = {
+//     counter,
+//     // get counter() {
+//     //     return counter;
+//     // },
+//     incCounter,
+// };
+// var a = 100;
+
+// function test(arg) {
+//     const arg1 = '22';
+//     // a = 10;
+//     // console.log('a0:', a);
+//     // a = 20;
+// }
+// console.log('a1:', a);
+// test();
+// var a = 123;
+// if (true) {
+//     a = 456;
+//     let a;
+// }
+// console.log('a', a);
+
+// let a = 200;
+// const b = a;
+// console.log(a, b);
+// a = 300;
+// console.log(a, b);
+// let counter = '3';
+// function changeDatatype(num) {
+//     counter = num;
+// }
+// const obj = {
+//     name: 'jack',
+//     age: 19,
+// };
+// function changeObj({ name, age }) {
+//     obj.name = name;
+//     console.log('🚀 ~ changeObj ~ obj:', obj);
+//     obj.age = age;
+// }
+// const arr = ['default'];
+// function changeArr(...args) {
+//     arr.push(...args);
+// }
+// setTimeout(() => {
+//     changeDatatype('4');
+//     changeObj({ name: 'new name', age: 20 });
+//     changeArr('1', '2', 3);
+//     console.log('module内部 改变 counter:', counter);
+//     console.log('module内部 改变 obj:', obj);
+//     console.log('module内部 改变 arr:', arr);
+// }, 2000);
+
+// module.exports = {
+//     counter,
+// obj,
+// arr,
+// changeDatatype,
+// changeArr,
+// changeObj,
+// };
+
+// let counter = '3';
+// function changeDatatype(num) {
+//     counter = num;
+//     console.log('module内部 改变 counter:', counter);
+// }
+export const obj = {
+    name: 'jack',
+    age: 19,
 };
+export function changeObj({ name, age }) {
+    obj.name = name;
+    obj.age = age;
+    console.log('改变 obj:', obj);
+}
+export const arr = ['default'];
+export function changeArr(...args) {
+    arr.push(...args);
+    console.log('改变 arr:', arr);
+}
+setTimeout(() => {
+    changeObj({ name: 'new name', age: 20 });
+    changeArr('1', '2', 3);
+}, 2000);
+
+// export default {
+//     obj,
+//     arr,
+//     changeArr,
+//     changeObj,
+// };
+// module.exports = {
+//     obj,
+//     arr,
+//     changeArr,
+//     changeObj,
+// };

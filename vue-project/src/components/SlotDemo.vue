@@ -3,6 +3,9 @@
         <div class="header">
             <slot name="header" :data="slotData"></slot>
         </div>
+        <div class="content">
+            <slot><p>默认插槽</p></slot>
+        </div>
         <div class="footer"><slot name="footer"></slot></div>
     </div>
 </template>
