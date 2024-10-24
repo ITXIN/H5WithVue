@@ -34,6 +34,9 @@ module.exports = function (options) {
             bridge: {
                 url: '../src/utils/jsbridge/index.js',
             },
+            uuid: {
+                url: 'https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js',
+            },
         },
     };
 };

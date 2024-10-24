@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebpack_project=self.webpackChunkwebpack_project||[]).push([[650],{407:(e,c,a)=>{a.r(c),a.d(c,{detail:()=>p});var p=function(){console.log("Detail")}}}]);

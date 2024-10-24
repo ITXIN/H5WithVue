@@ -35,7 +35,7 @@ export default function Home(params: any) {
           /home/detail 则显示home及下面的detail页面 */}
       <Outlet />
       <ErrorBoundary>
-        <div>错误边界：{params.see.kk}</div>
+        <div>错误边界：{params || ""}</div>
         <button onClick={click}>按钮点击</button>
       </ErrorBoundary>
     </div>

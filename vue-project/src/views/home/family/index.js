@@ -8,6 +8,7 @@ import Router from 'vue-router';
 import '@static/css/home/home.css';
 import homeStore from '@src/vuex/home';
 import VueLazyload from 'vue-lazyload';
+import { handlePerformance } from '@src/utils/performance/index.js';
 
 // TODO:检测页面是否白屏
 // import { openWhiteScreen } from '@src/utils/whiteScreenCheck/index.js';
@@ -15,6 +16,7 @@ import VueLazyload from 'vue-lazyload';
 // openWhiteScreen({ skeletonProject: true }, function (res) {
 //     console.log('🚀 ~ openWhiteScreen ~ res:', res);
 // });
+handlePerformance();
 
 // 图片懒加载插件
 Vue.use(VueLazyload, {
@@ -30,23 +32,6 @@ Vue.config.devtools = true;
 Vue.prototype.$myGlobalMethod = function name(params) {
     console.log('🚀 ~ name ~ params:', params);
 };
-const timeNow = new Date();
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('🚀 ~ first-contenful-paint DOMContentLoaded:', new Date() - timeNow);
-});
-if ('PerformanceObserver' in window && 'getEntriesByName' in performance) {
-    const fcpEntries = performance.getEntriesByName('first-contentful-paint');
-    if (fcpEntries.length > 0) {
-        // 假设我们只关心第一个（通常只有一个）FCP事件
-        const fcp = fcpEntries[0];
-        console.log(`First Contentful Paint happened at ${fcp.startTime} milliseconds`);
-        // fcp 对象还包含其他有用的属性，如 duration 等
-    } else {
-        console.log('No First Contentful Paint event found.');
-    }
-} else {
-    console.log('Your browser does not support the Performance API.');
-}
 
 // TODO:捕获全局错误
 Vue.config.errorHandler = (err, vm, info) => {
