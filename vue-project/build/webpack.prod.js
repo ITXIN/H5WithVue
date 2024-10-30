@@ -35,7 +35,7 @@ module.exports = function (options) {
             concatenateModules: false,
             // 错误
             emitOnErrors: true,
-            //
+            // 缓存
             splitChunks: {
                 cacheGroups: {
                     vendors: {

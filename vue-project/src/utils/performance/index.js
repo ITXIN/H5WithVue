@@ -15,7 +15,7 @@ function isSupportPerformanceObserver() {
 }
 export function lazyReportCache(params) {
     if (isSupportPerformanceObserver()) {
-        console.log('🚀 ~ lazyReportCache ~ params:', params);
+        // console.log('🚀 ~ lazyReportCache ~ params:', params);
     }
 }
 export function observeEvent(entryType) {

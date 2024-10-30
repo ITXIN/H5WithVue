@@ -19,7 +19,7 @@ module.exports = function (options) {
             open: true,
             port: process.env.port || 3088,
             compress: true,
-            host: 'localhost',
+            host: '192.168.0.101',
             allowedHosts: ['xxx.com.cn'],
             proxy: [],
             hot: true, // HMR 模块热替换，指在应用程序运行过程径中，替换模块，添加、删除、修改模块，而无需重重新刷新整个应用。

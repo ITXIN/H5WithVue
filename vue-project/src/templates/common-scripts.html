@@ -1,5 +1,10 @@
 {% if ENV !== 'prd' %}
 <script src="{{configBase.libs.console.url}}"></script>
+<script>
+    // 初始化
+    var vConsole = new VConsole();
+    // console.log('Hello world');
+</script>
 {% endif %}
 <script src="{{configBase.libs.vue.url}}"></script>
 <script src="{{configBase.libs.vuex.url}}"></script>

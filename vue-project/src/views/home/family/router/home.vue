@@ -2,6 +2,13 @@
     <div class="body-bg">
         <!-- 插槽 -->
         <h1>Home页面</h1>
+        <h1>jsBridgeMethod</h1>
+        <button @click="jsBridgeMethod">jsBridgeMethod</button>
+
+        <div>{{ testAssign.name }}||{{ testAssign.age }}</div>
+        <div @click="changeAssign">change</div>
+
+        <TestHandleDOM :dataObj="dataList"></TestHandleDOM>
 
         <VHCenter></VHCenter>
 
@@ -84,9 +91,8 @@ import { mapActions, mapState } from 'vuex';
 import HelloWorld from '../components/HelloWorld.vue';
 import BFCTest from '../components/BFCTest.vue';
 import VHCenter from '../components/VHCenter.vue';
-// import { name, obj } from '@src/utils/test';
-// obj.name = 'change';
-// console.log('🚀 ~ name:', name, JSON.stringify(obj));
+import TestHandleDOM from '../components/TestHandleDOM.vue';
+import { jsBridgeMethod } from '@src/utils/jsBridge';
 export default {
     name: 'Home',
     data() {
@@ -113,6 +119,10 @@ export default {
             ],
             imageUrl:
                 'http://gips3.baidu.com/it/u=2814132893,2583173656&fm=3042&app=3042&f=JPEG&wm=1,huayi,0,0,13,9&wmo=0,0&w=480&h=640',
+            dataList: { name: 'default' },
+            testAssign: {
+                name: 'testAssign',
+            },
         };
     },
     provide() {
@@ -126,6 +136,7 @@ export default {
         HelloWorld,
         BFCTest,
         VHCenter,
+        TestHandleDOM,
     },
     created() {
         // console.log('==============create');
@@ -144,6 +155,7 @@ export default {
             this.lazyLoadUnFirstBundle();
         });
         this.noDebugger();
+        console.log('======mounted', jsBridgeMethod);
     },
     computed: {
         // 引入store
@@ -155,6 +167,16 @@ export default {
     methods: {
         // 引入store
         ...mapActions(['getHomeListData']),
+        changeAssign() {
+            // 动态给data添加新属性
+            // 方法1.
+            // this.testAssign = Object.assign({}, this.testAssign, { name: 'change', age: 18 });
+            // 方法2.
+            // this.$set(this.testAssign, 'name', 'change');
+            // this.$set(this.testAssign, 'age', 18);
+            // 方法3.
+            this.$forceUpdate();
+        },
         displayText() {
             const text = document.getElementById('textInput').value;
             document.getElementById('userInput').innerHTML = text;
@@ -219,22 +241,21 @@ export default {
         },
         // JSBridge 测试
         jsBridgeMethod() {
-            window.WebJSBridge.showMessage1('param', res => {
-                console.log('recieve callback', res);
-            });
-            window?.WebJSBridge?.call?.('showMessage1', 'param', function (res) {
-                console.log('recieve callback');
-                console.log(res);
-            });
-            window.webkit.messageHandlers.showMessage2.postMessage(['两个参数One', '两个参数Two']);
+            // window.WebJSBridge.showMessage1('param', res => {
+            //     console.log('recieve callback', res);
+            // });
+            // console.log('🚀 ~ jsBridgeMethod ~ window.WebJSBridge:', window.WebJSBridge);
+            // window?.WebJSBridge?.call?.('showMessage1', 'param', function (res) {
+            //     console.log('recieve callback res:', res);
+            // });
+            // window.webkit.messageHandlers.showMessage2.postMessage(['两个参数One', '两个参数Two']);
             window.WebJSBridge.call('showMessage2', 'param', function (res) {
-                console.log('recieve callback');
-                console.log(res);
+                console.log('recieve showMessage2 callback', res);
             });
-            window.WebJSBridge?.call('jsbridgeMethod', 'param', function (res) {
-                console.log('recieve callback');
-                console.log(res);
-            });
+            // window.WebJSBridge?.call('jsbridgeMethod', 'param', function (res) {
+            //     console.log('recieve callback');
+            //     console.log(res);
+            // });
         },
         lazyLoadUnFirstBundle() {
             // 懒加载
@@ -244,6 +265,14 @@ export default {
                 ).then(m => m.default);
 
             console.log('=======comname', this.comName);
+        },
+    },
+    watch: {
+        dataList: {
+            handler(newVal, oldVal) {
+                console.log('watch dataList', newVal, oldVal);
+            },
+            deep: true,
         },
     },
     // 在SSR中，activated钩子实际上不会被调用

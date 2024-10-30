@@ -10,6 +10,13 @@ import homeStore from '@src/vuex/home';
 import VueLazyload from 'vue-lazyload';
 import { handlePerformance } from '@src/utils/performance/index.js';
 
+// import Vconsole from 'vconsole';
+
+// if (process.env.NODE_ENV !== 'production') {
+//     // 测试和开发打开，生产不能打开
+//     const vConsole = new Vconsole();
+//     Vue.use(vConsole);
+// }
 // TODO:检测页面是否白屏
 // import { openWhiteScreen } from '@src/utils/whiteScreenCheck/index.js';
 // 检测页面是否白屏
