@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EA9FD0C2CD30BDF00AB1547 /* PageBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9FD0B2CD30BDF00AB1547 /* PageBViewController.m */; };
 		2EE828A02C777D79003F096E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE8289F2C777D79003F096E /* AppDelegate.m */; };
 		2EE828AC2C777D79003F096E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE828AA2C777D79003F096E /* Main.storyboard */; };
 		2EE828AE2C777D81003F096E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EE828AD2C777D81003F096E /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		21AF1BBF4027E7B8E6A54D3A /* Pods_OCTestjs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OCTestjs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EA9FD0A2CD30BDF00AB1547 /* PageBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageBViewController.h; sourceTree = "<group>"; };
+		2EA9FD0B2CD30BDF00AB1547 /* PageBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageBViewController.m; sourceTree = "<group>"; };
 		2EE8289B2C777D79003F096E /* OCTestjs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCTestjs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE8289E2C777D79003F096E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2EE8289F2C777D79003F096E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				2EE828AF2C777D81003F096E /* LaunchScreen.storyboard */,
 				2EE828B22C777D81003F096E /* Info.plist */,
 				2EE828B32C777D81003F096E /* main.m */,
+				2EA9FD0A2CD30BDF00AB1547 /* PageBViewController.h */,
+				2EA9FD0B2CD30BDF00AB1547 /* PageBViewController.m */,
 			);
 			path = OCTestjs;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			files = (
 				2EE828BC2C777E5D003F096E /* ViewController.m in Sources */,
 				2EE828B42C777D81003F096E /* main.m in Sources */,
+				2EA9FD0C2CD30BDF00AB1547 /* PageBViewController.m in Sources */,
 				2EE828A02C777D79003F096E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

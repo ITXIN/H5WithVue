@@ -25,7 +25,7 @@
 
 
        // 3.设置窗口的根控制器，并且显示窗口
-       self.window.rootViewController = viewContr;
+       self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:viewContr];
 
        // 4.显示窗口
        [self.window makeKeyAndVisible];

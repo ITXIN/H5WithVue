@@ -8,7 +8,7 @@
 #import "ViewController.h"
 
 #import "WebKit/WebKit.h"
-
+#import "PageBViewController.h"
 @interface ViewController ()<UIWebViewDelegate>
 
 @property(nonatomic, strong, readwrite)WKWebView *webView;
@@ -60,9 +60,22 @@
     [self.view addSubview:self.webView];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.101:3088/a/b/home_family.html"]]];
   
-
+    NSObject *uninitializedPtr;
+    NSLog(@"========%@",uninitializedPtr);
     // Do any additional setup after loading the view.
 }
+
+-(void)test1{
+    NSLog(@"====test1");
+}
+-(void)test2{
+    NSLog(@"====test2");
+}
+-(void)test3{
+    NSLog(@"====test3");
+}
+
+
 #pragma mark - WKScriptMessageHandler
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
@@ -82,7 +95,14 @@
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [weakSelf dismissViewControllerAnimated:YES completion:^{
+                //向js发起回调
+                NSString *jsString = [NSString stringWithFormat:@"window.bridgeCallback(\"%@\", \"%@\")", callBackId, @"success"];
+                [self.webView evaluateJavaScript:jsString completionHandler:^(id _Nullable res, NSError * _Nullable error) {
+                    NSLog(@"===didReceiveScriptMessage evaluateJavaScript error:%@",error);
+                    NSLog(@"===didReceiveScriptMessage evaluateJavaScript res:%@",res);
+                }];
                 
+                [weakSelf.navigationController pushViewController:[[PageBViewController alloc]init] animated:YES];
             }];
         }];
         [alert addAction:confirm];
@@ -90,12 +110,8 @@
             
         }];
         
-        //向js发起回调
-        NSString *jsString = [NSString stringWithFormat:@"window.bridgeCallback(\"%@\", \"%@\")", callBackId, @"success"];
-        [self.webView evaluateJavaScript:jsString completionHandler:^(id _Nullable res, NSError * _Nullable error) {
-            NSLog(@"===didReceiveScriptMessage evaluateJavaScript error:%@",error);
-            NSLog(@"===didReceiveScriptMessage evaluateJavaScript res:%@",res);
-        }];
+        
+       
 
         //没有参数
     }

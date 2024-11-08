@@ -9,9 +9,9 @@ import '@static/css/home/home.css';
 import homeStore from '@src/vuex/home';
 import VueLazyload from 'vue-lazyload';
 import { handlePerformance } from '@src/utils/performance/index.js';
-
+import { test } from '../../../../tools/hot.js';
 // import Vconsole from 'vconsole';
-
+test();
 // if (process.env.NODE_ENV !== 'production') {
 //     // 测试和开发打开，生产不能打开
 //     const vConsole = new Vconsole();
