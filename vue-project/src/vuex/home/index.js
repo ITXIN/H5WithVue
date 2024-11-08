@@ -1,3 +1,4 @@
+import { httpGet } from '@src/api/http';
 const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
 
 const state = {
@@ -15,6 +16,10 @@ const actions = {
                 },
             };
             console.log('🚀 ~ returnnewPromise ~ res:', res);
+            httpGet({
+                url: '/api/getHomeListData',
+                params: parames,
+            });
             setTimeout(() => {
                 resolve(res);
                 commit(UPDATE_USER_DATA, { key: 'homeListData', data: res.data });

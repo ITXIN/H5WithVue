@@ -93,6 +93,7 @@ import BFCTest from '../components/BFCTest.vue';
 import VHCenter from '../components/VHCenter.vue';
 import TestHandleDOM from '../components/TestHandleDOM.vue';
 import { jsBridgeMethod } from '@src/utils/jsBridge';
+
 export default {
     name: 'Home',
     data() {

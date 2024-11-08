@@ -10,8 +10,18 @@ import homeStore from '@src/vuex/home';
 import VueLazyload from 'vue-lazyload';
 import { handlePerformance } from '@src/utils/performance/index.js';
 import { test } from '../../../../tools/hot.js';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+// Vue.use(ElementUI);
 // import Vconsole from 'vconsole';
 test();
+// 模块热替换
+if (module.hot) {
+    module.hot.accept('../../../../tools/hot.js', function () {
+        console.log('Accepting the updated modules!');
+        test();
+    });
+}
 // if (process.env.NODE_ENV !== 'production') {
 //     // 测试和开发打开，生产不能打开
 //     const vConsole = new Vconsole();
@@ -122,8 +132,8 @@ const router = new Router({
 });
 // 导航守卫：路由拦截器，权限判断，重定向等
 router.beforeEach((to, from, next) => {
-    console.log('🚀 ~ router.beforeEach ~ from:', from);
-    console.log('🚀 ~ router.beforeEach ~ to:', to);
+    console.log('🚀 ~ router.beforeEach ~ from:', from, to);
+    // console.log('🚀 ~ router.beforeEach ~ to:', to);
     setTimeout(() => {
         const isLogin = false;
         if (to.name === 'notfind' && !isLogin) {

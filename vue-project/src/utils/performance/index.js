@@ -111,7 +111,7 @@ export function getUUID() {
             v = c === 'x' ? r : (r & 0x3) | 0x8;
         return v.toString(16);
     });
-    console.log('🚀 ~ uuid ~ uuid:', uuid);
+    // console.log('🚀 ~ uuid ~ uuid:', uuid);
     return uuid;
 }
 
